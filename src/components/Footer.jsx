@@ -54,7 +54,7 @@ const Footer = () => {
 
       {/* Bottom bar */}
       <div className="border-t border-gray-700 mt-8 pt-4 text-center text-gray-500">
-        &copy; {new Date().getFullYear()} AutoLux. All rights reserved.
+        &copy; {new Date().getFullYear()} The Royal Oak Drives. All rights reserved.
       </div>
     </footer>
   );

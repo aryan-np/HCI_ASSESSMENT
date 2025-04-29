@@ -64,7 +64,7 @@ const BookTestDrive = () => {
       <div className="w-full max-w-3xl bg-white p-8 rounded-lg shadow-lg relative">
         {/* Back Button */}
         <button
-          onClick={() => navigate("/cars")}
+          onClick={() => navigate("/models")}
           type="button"
           className="absolute top-4 left-4 bg-royal-gold text-royal-black p-2 rounded-full hover:scale-110 transition duration-300"
         >

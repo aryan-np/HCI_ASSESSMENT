@@ -99,7 +99,7 @@ const CarsListing = () => {
           <div className="rounded overflow-hidden shadow mb-6">
             <img
               src={selectedCar.image}
-              alt={selectedCar.name}
+              alt={selectedCar.name+ " this is alt text  The Mini Cooper is a compact yet stylish car known for its distinctive design, sporty handling, and premium feel. Originally launched as a British icon in the 1960s, the modern Mini Cooper blends retro charm with advanced engineering. "}
               className="w-full h-96 object-contain rounded-lg"
             />
           </div>

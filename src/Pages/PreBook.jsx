@@ -56,7 +56,7 @@ const PreBook = () => {
     <div className="min-h-screen flex flex-col justify-center items-center bg-gray-100 py-10 px-6">
       <div className="w-full max-w-3xl bg-white p-8 rounded-lg shadow-lg relative">
         <button
-          onClick={() => navigate("/cars")}
+          onClick={() => navigate("/models")}
           className="absolute top-4 left-4 bg-yellow-500 text-black p-2 rounded-full hover:scale-110 transition"
         >
           <ArrowLeft size={20} />
