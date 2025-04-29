@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Optional base styling */
+body {
+  @apply bg-white text-royal-black ;
+}
