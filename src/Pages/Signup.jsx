@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Popup from '../components/Popup'; // Make sure this exists
+import Popup from '../components/Popup';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
-  // const [country, setCountry] = useState('');
+  const [agree, setAgree] = useState(false);
   const [error, setError] = useState('');
   const [popupMessage, setPopupMessage] = useState('');
   const [showPopup, setShowPopup] = useState(false);
@@ -16,8 +17,13 @@ const Signup = () => {
   const handleSignup = (e) => {
     e.preventDefault();
 
-    if (!email || !password || !phone || !address ) {
+    if (!email || !password || !phone || !address) {
       setError('Please fill in all fields');
+      return;
+    }
+
+    if (!agree) {
+      setError('You must agree to the Terms and Conditions');
       return;
     }
 
@@ -40,23 +46,25 @@ const Signup = () => {
         <h2 className="text-2xl font-bold text-center mb-6 text-royal-gold">Sign Up</h2>
 
         {error && <p className="text-red-600 mb-4 text-sm text-center">{error}</p>}
+
         <div className="mb-4">
           <label className="block mb-1 font-medium">Name</label>
           <input
-            type="String"
+            type="text"
             className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-royal-gold"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             required
           />
         </div>
+
         <div className="mb-4">
           <label className="block mb-1 font-medium">Phone Number</label>
           <input
             type="tel"
             className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-royal-gold"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             required
           />
         </div>
@@ -71,8 +79,6 @@ const Signup = () => {
             required
           />
         </div>
-
-  
 
         <div className="mb-4">
           <label className="block mb-1 font-medium">Email</label>
@@ -96,7 +102,25 @@ const Signup = () => {
           />
         </div>
 
-       
+        <div className="mb-4 flex items-center text-sm">
+          <input
+            type="checkbox"
+            className="mr-2"
+            checked={agree}
+            onChange={(e) => setAgree(e.target.checked)}
+          />
+          <label>
+            I agree to the{' '}
+            <a
+              href="/TermsAndConditions.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline text-royal-gold"
+            >
+              Terms and Conditions
+            </a>
+          </label>
+        </div>
 
         <button
           type="submit"
@@ -116,7 +140,6 @@ const Signup = () => {
         </p>
       </form>
 
-      {/* Success Popup */}
       <Popup
         show={showPopup}
         message={popupMessage}

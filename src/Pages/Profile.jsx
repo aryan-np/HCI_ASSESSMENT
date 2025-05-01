@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import profilePic from "../assets/logo.png"; // Your default profile image
+import profilePic from "../assets/logo.png";
 import { FaCog, FaTrashAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
@@ -15,6 +15,7 @@ const Profile = () => {
 
   const [previewImage, setPreviewImage] = useState(null);
   const [message, setMessage] = useState({ type: "", content: "" });
+  const [showConfirmLogout, setShowConfirmLogout] = useState(false); // Confirmation modal
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -45,14 +46,41 @@ const Profile = () => {
   };
 
   const handleLogout = () => {
+    setShowConfirmLogout(true); // Show confirmation
+  };
+
+  const confirmLogout = () => {
     localStorage.removeItem("token");
-    navigate("/");
+    navigate("/", { state: { logoutMessage: "👋 You have been logged out successfully." } });
   };
 
   return (
     <div className="min-h-screen bg-black text-white font-sans">
       <Navbar />
       <main className="max-w-5xl mx-auto p-6 pt-24">
+        {/* Logout Confirmation Modal */}
+        {showConfirmLogout && (
+          <div className="fixed inset-0 bg-black bg-opacity-80 z-50 flex justify-center items-center">
+            <div className="bg-[#1a1a1a] p-8 rounded-2xl shadow-xl text-white w-[90%] max-w-md text-center">
+              <h2 className="text-2xl font-semibold mb-4">Are you sure you want to log out?</h2>
+              <div className="flex justify-center gap-6 mt-6">
+                <button
+                  onClick={confirmLogout}
+                  className="bg-yellow-400 text-black px-6 py-2 rounded-full hover:bg-yellow-500 transition"
+                >
+                  ✅ Yes
+                </button>
+                <button
+                  onClick={() => setShowConfirmLogout(false)}
+                  className="bg-red-600 text-white px-6 py-2 rounded-full hover:bg-red-700 transition"
+                >
+                  ❌ Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Profile Card */}
         <section className="bg-[#121212] p-6 rounded-2xl shadow-lg flex flex-col md:flex-row items-center gap-8 mb-10">
           <div className="w-32 h-32 rounded-full overflow-hidden bg-gray-700 border-2 border-gold">

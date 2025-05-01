@@ -124,7 +124,7 @@ const Homepage = () => {
             “The best luxury car experience I’ve ever had. Every step felt personalized and premium.”
           </p>
           <Link
-            to="/testimonials"
+            to="/about"
             className="inline-block mt-4 px-6 py-3 bg-[#d4af37] text-black rounded-xl hover:bg-white transition"
           >
             View Testimonials
