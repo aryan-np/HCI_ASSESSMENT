@@ -6,6 +6,7 @@ import Popup from '../components/Popup';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false); // 👈 Added state
   const [popupMessage, setPopupMessage] = useState('');
   const [showPopup, setShowPopup] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -92,15 +93,29 @@ const Login = () => {
           />
         </div>
 
-        <div className="mb-6">
+        <div className="mb-2">
           <label className="block mb-1 font-medium">Password</label>
           <input
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-royal-gold"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
+        </div>
+
+        {/* Translucent Checkbox */}
+        <div className="flex items-center mb-6">
+          <input
+            type="checkbox"
+            id="showPassword"
+            checked={showPassword}
+            onChange={() => setShowPassword(!showPassword)}
+            className="mr-2 opacity-60 cursor-pointer"
+          />
+          <label htmlFor="showPassword" className="text-sm text-gray-600 select-none">
+            Show Password
+          </label>
         </div>
 
         <button
@@ -110,7 +125,6 @@ const Login = () => {
           Login
         </button>
 
-        {/* Optional "Use Saved Credentials" */}
         <p className="text-center text-sm mt-4">
           <button
             type="button"
